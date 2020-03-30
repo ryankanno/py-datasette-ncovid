@@ -23,3 +23,6 @@ If you want to share this with the outside, run ngrok
 ## Run Cloud
 
 See [Datasette docs](https://datasette.readthedocs.io/en/stable/publish.html) on publishing your data
+
+
+See ```./scripts/hawaii/deploy.sh```
