@@ -8,6 +8,20 @@ version = "0.4.0"
 
 [[package]]
 category = "main"
+description = "ASGI middleware for protecting against CSRF attacks"
+name = "asgi-csrf"
+optional = false
+python-versions = "*"
+version = "0.6.1"
+
+[package.dependencies]
+itsdangerous = "*"
+
+[package.extras]
+test = ["pytest", "pytest-asyncio", "httpx", "starlette", "python-multipart"]
+
+[[package]]
+category = "main"
 description = "Composable command line interface toolkit"
 name = "click"
 optional = false
@@ -46,22 +60,27 @@ description = "A tool for exploring and publishing data"
 name = "datasette"
 optional = false
 python-versions = "*"
-version = "0.39"
+version = "0.46"
 
 [package.dependencies]
-Jinja2 = ">=2.10.3,<2.11.0"
-aiofiles = ">=0.4.0,<0.5.0"
+Jinja2 = ">=2.10.3,<2.12.0"
+PyYAML = ">=5.3,<6.0"
+aiofiles = ">=0.4,<0.6"
+asgi-csrf = ">=0.6"
 click = ">=7.1.1,<7.2.0"
 click-default-group = ">=1.2.2,<1.3.0"
 hupper = ">=1.9,<2.0"
-janus = ">=0.4.0,<0.5.0"
+itsdangerous = ">=1.1,<2.0"
+janus = ">=0.4,<0.6"
+mergedeep = ">=1.1.1,<1.4.0"
 pint = ">=0.9,<1.0"
 pluggy = ">=0.13.0,<0.14.0"
+python-baseconv = "1.2.2"
 uvicorn = ">=0.11,<1.0"
 
 [package.extras]
 docs = ["sphinx-rtd-theme", "sphinx-autobuild"]
-test = ["pytest (>=5.2.2,<5.3.0)", "pytest-asyncio (>=0.10.0,<0.11.0)", "aiohttp (>=3.6.2,<3.7.0)", "beautifulsoup4 (>=4.8.1,<4.9.0)", "asgiref (>=3.2.3,<3.3.0)", "black (>=19.10b0,<20.0.0)"]
+test = ["pytest (>=5.2.2,<6.1.0)", "pytest-asyncio (>=0.10,<0.15)", "aiohttp (>=3.6.2,<3.7.0)", "beautifulsoup4 (>=4.8.1,<4.10.0)", "asgiref (>=3.2.3,<3.3.0)", "black (>=19.10b0,<20.0.0)"]
 
 [[package]]
 category = "main"
@@ -127,6 +146,14 @@ testing = ["packaging", "importlib-resources"]
 
 [[package]]
 category = "main"
+description = "Various helpers to pass data to untrusted environments and back."
+name = "itsdangerous"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+version = "1.1.0"
+
+[[package]]
+category = "main"
 description = "Mixed sync-async queue to interoperate between asyncio tasks and classic threads"
 name = "janus"
 optional = false
@@ -154,6 +181,14 @@ name = "markupsafe"
 optional = false
 python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*"
 version = "1.1.1"
+
+[[package]]
+category = "main"
+description = "A deep merge function for 🐍."
+name = "mergedeep"
+optional = false
+python-versions = ">=3.6"
+version = "1.3.0"
 
 [[package]]
 category = "main"
@@ -221,6 +256,14 @@ version = "0.1.4"
 
 [[package]]
 category = "main"
+description = "Convert numbers from base 10 integers to base X strings and back again."
+name = "python-baseconv"
+optional = false
+python-versions = "*"
+version = "1.2.2"
+
+[[package]]
+category = "main"
 description = "Extensions to the standard Python datetime module"
 name = "python-dateutil"
 optional = false
@@ -237,6 +280,14 @@ name = "pytz"
 optional = false
 python-versions = "*"
 version = "2019.3"
+
+[[package]]
+category = "main"
+description = "YAML parser and emitter for Python"
+name = "pyyaml"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+version = "5.3.1"
 
 [[package]]
 category = "main"
@@ -311,13 +362,17 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "99b53d89c59c141eeb921a5e8c42489beb37df0c7af0baa2422101a2cc307251"
+content-hash = "d8af651dca8f1860098a0117b06880111e3b4ddd0b4274fbdc5adc5a7cf71d86"
 python-versions = "^3.7"
 
 [metadata.files]
 aiofiles = [
     {file = "aiofiles-0.4.0-py3-none-any.whl", hash = "sha256:1e644c2573f953664368de28d2aa4c89dfd64550429d0c27c4680ccd3aa4985d"},
     {file = "aiofiles-0.4.0.tar.gz", hash = "sha256:021ea0ba314a86027c166ecc4b4c07f2d40fc0f4b3a950d1868a0f2571c2bbee"},
+]
+asgi-csrf = [
+    {file = "asgi-csrf-0.6.1.tar.gz", hash = "sha256:4045b8b45c330e068b8b96f914e585ea69228efbfe574ab4a4be2d8c6009a19f"},
+    {file = "asgi_csrf-0.6.1-py3-none-any.whl", hash = "sha256:6f4104342a6f4cdbb6e9b3c63bf7d540aaa1d978d711cf0e56a6cc919c25fa10"},
 ]
 click = [
     {file = "click-7.1.1-py2.py3-none-any.whl", hash = "sha256:e345d143d80bf5ee7534056164e5e112ea5e22716bbb1ce727941f4c8b471b9a"},
@@ -330,7 +385,8 @@ csvs-to-sqlite = [
     {file = "csvs_to_sqlite-1.0-py2.py3-none-any.whl", hash = "sha256:25135a5551265023dbe8d4d8c95e79d8ea2205dd19622d48df41bc4745932a3f"},
 ]
 datasette = [
-    {file = "datasette-0.39-py3-none-any.whl", hash = "sha256:b048501d51be7f89b76e1d2d189c7a88b400fd1892331a36949cd0730cdf63eb"},
+    {file = "datasette-0.46-py3-none-any.whl", hash = "sha256:376f586211b8ee4b1864062a778b7a50feae2cce8b0a292d6ed16ccaa2ba59ea"},
+    {file = "datasette-0.46.tar.gz", hash = "sha256:eb5e5dcb8a0957ed1def841108576afb15a38ce61d222bf54a25d827999ad521"},
 ]
 dateparser = [
     {file = "dateparser-0.7.4-py2.py3-none-any.whl", hash = "sha256:1b1f0e3034f82d1f92b45fa445826da6a36d67af8a1169e04869685594276011"},
@@ -361,6 +417,10 @@ hupper = [
 importlib-metadata = [
     {file = "importlib_metadata-1.6.0-py2.py3-none-any.whl", hash = "sha256:2a688cbaa90e0cc587f1df48bdc97a6eadccdcd9c35fb3f976a09e3b5016d90f"},
     {file = "importlib_metadata-1.6.0.tar.gz", hash = "sha256:34513a8a0c4962bc66d35b359558fd8a5e10cd472d37aec5f66858addef32c1e"},
+]
+itsdangerous = [
+    {file = "itsdangerous-1.1.0-py2.py3-none-any.whl", hash = "sha256:b12271b2047cb23eeb98c8b5622e2e5c5e9abd9784a153e9d8ef9cb4dd09d749"},
+    {file = "itsdangerous-1.1.0.tar.gz", hash = "sha256:321b033d07f2a4136d3ec762eac9f16a10ccd60f53c0c91af90217ace7ba1f19"},
 ]
 janus = [
     {file = "janus-0.4.0-py3-none-any.whl", hash = "sha256:86878806559274376b83193bfd992ad94576d1024ddfc69cf1a908bf20d6b37d"},
@@ -398,7 +458,16 @@ markupsafe = [
     {file = "MarkupSafe-1.1.1-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:ba59edeaa2fc6114428f1637ffff42da1e311e29382d81b339c1817d37ec93c6"},
     {file = "MarkupSafe-1.1.1-cp37-cp37m-win32.whl", hash = "sha256:b00c1de48212e4cc9603895652c5c410df699856a2853135b3967591e4beebc2"},
     {file = "MarkupSafe-1.1.1-cp37-cp37m-win_amd64.whl", hash = "sha256:9bf40443012702a1d2070043cb6291650a0841ece432556f784f004937f0f32c"},
+    {file = "MarkupSafe-1.1.1-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:6788b695d50a51edb699cb55e35487e430fa21f1ed838122d722e0ff0ac5ba15"},
+    {file = "MarkupSafe-1.1.1-cp38-cp38-manylinux1_i686.whl", hash = "sha256:cdb132fc825c38e1aeec2c8aa9338310d29d337bebbd7baa06889d09a60a1fa2"},
+    {file = "MarkupSafe-1.1.1-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:13d3144e1e340870b25e7b10b98d779608c02016d5184cfb9927a9f10c689f42"},
+    {file = "MarkupSafe-1.1.1-cp38-cp38-win32.whl", hash = "sha256:596510de112c685489095da617b5bcbbac7dd6384aeebeda4df6025d0256a81b"},
+    {file = "MarkupSafe-1.1.1-cp38-cp38-win_amd64.whl", hash = "sha256:e8313f01ba26fbbe36c7be1966a7b7424942f670f38e666995b88d012765b9be"},
     {file = "MarkupSafe-1.1.1.tar.gz", hash = "sha256:29872e92839765e546828bb7754a68c418d927cd064fd4708fab9fe9c8bb116b"},
+]
+mergedeep = [
+    {file = "mergedeep-1.3.0-py3-none-any.whl", hash = "sha256:0a700d0cdf7589333b89111a61ed66b484c51690156471da80a7f54fcc2638b5"},
+    {file = "mergedeep-1.3.0.tar.gz", hash = "sha256:19a91123e71ae27cb22335f4d03aec040026c89d4ff6df42595f7e7223a83dfb"},
 ]
 numpy = [
     {file = "numpy-1.18.2-cp35-cp35m-macosx_10_9_x86_64.whl", hash = "sha256:a1baa1dc8ecd88fb2d2a651671a84b9938461e8a8eed13e2f0a812a94084d1fa"},
@@ -455,6 +524,9 @@ pluggy = [
 py-lru-cache = [
     {file = "py_lru_cache-0.1.4.tar.gz", hash = "sha256:02df33684e13e1a78987bf9f8b0ac90210952857d9d12d1cf83fd0c906456af0"},
 ]
+python-baseconv = [
+    {file = "python-baseconv-1.2.2.tar.gz", hash = "sha256:0539f8bd0464013b05ad62e0a1673f0ac9086c76b43ebf9f833053527cd9931b"},
+]
 python-dateutil = [
     {file = "python-dateutil-2.8.1.tar.gz", hash = "sha256:73ebfe9dbf22e832286dafa60473e4cd239f8592f699aa5adaf10050e6e1823c"},
     {file = "python_dateutil-2.8.1-py2.py3-none-any.whl", hash = "sha256:75bb3f31ea686f1197762692a9ee6a7550b59fc6ca3a1f4b5d7e32fb98e2da2a"},
@@ -462,6 +534,19 @@ python-dateutil = [
 pytz = [
     {file = "pytz-2019.3-py2.py3-none-any.whl", hash = "sha256:1c557d7d0e871de1f5ccd5833f60fb2550652da6be2693c1e02300743d21500d"},
     {file = "pytz-2019.3.tar.gz", hash = "sha256:b02c06db6cf09c12dd25137e563b31700d3b80fcc4ad23abb7a315f2789819be"},
+]
+pyyaml = [
+    {file = "PyYAML-5.3.1-cp27-cp27m-win32.whl", hash = "sha256:74809a57b329d6cc0fdccee6318f44b9b8649961fa73144a98735b0aaf029f1f"},
+    {file = "PyYAML-5.3.1-cp27-cp27m-win_amd64.whl", hash = "sha256:240097ff019d7c70a4922b6869d8a86407758333f02203e0fc6ff79c5dcede76"},
+    {file = "PyYAML-5.3.1-cp35-cp35m-win32.whl", hash = "sha256:4f4b913ca1a7319b33cfb1369e91e50354d6f07a135f3b901aca02aa95940bd2"},
+    {file = "PyYAML-5.3.1-cp35-cp35m-win_amd64.whl", hash = "sha256:cc8955cfbfc7a115fa81d85284ee61147059a753344bc51098f3ccd69b0d7e0c"},
+    {file = "PyYAML-5.3.1-cp36-cp36m-win32.whl", hash = "sha256:7739fc0fa8205b3ee8808aea45e968bc90082c10aef6ea95e855e10abf4a37b2"},
+    {file = "PyYAML-5.3.1-cp36-cp36m-win_amd64.whl", hash = "sha256:69f00dca373f240f842b2931fb2c7e14ddbacd1397d57157a9b005a6a9942648"},
+    {file = "PyYAML-5.3.1-cp37-cp37m-win32.whl", hash = "sha256:d13155f591e6fcc1ec3b30685d50bf0711574e2c0dfffd7644babf8b5102ca1a"},
+    {file = "PyYAML-5.3.1-cp37-cp37m-win_amd64.whl", hash = "sha256:73f099454b799e05e5ab51423c7bcf361c58d3206fa7b0d555426b1f4d9a3eaf"},
+    {file = "PyYAML-5.3.1-cp38-cp38-win32.whl", hash = "sha256:06a0d7ba600ce0b2d2fe2e78453a470b5a6e000a985dd4a4e54e436cc36b0e97"},
+    {file = "PyYAML-5.3.1-cp38-cp38-win_amd64.whl", hash = "sha256:95f71d2af0ff4227885f7a6605c37fd53d3a106fcab511b8860ecca9fcf400ee"},
+    {file = "PyYAML-5.3.1.tar.gz", hash = "sha256:b8eac752c5e14d3eca0e6dd9199cd627518cb5ec06add0de9d32baeee6fe645d"},
 ]
 regex = [
     {file = "regex-2020.2.20-cp27-cp27m-win32.whl", hash = "sha256:99272d6b6a68c7ae4391908fc15f6b8c9a6c345a46b632d7fdb7ef6c883a2bbb"},
