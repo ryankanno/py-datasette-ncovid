@@ -59,7 +59,7 @@ pytz==2019.3
 regex==2020.2.20
 requests==2.23.0
 retryrequests==0.0.3
-rsa==4.0
+rsa==4.7
 simplejson==3.17.0
 SimpleSQLite==1.0.0
 six==1.14.0
