@@ -71,7 +71,7 @@ tabledata==0.10.3
 traitlets==4.3.3
 typepy==0.6.6
 tzlocal==2.0.0
-urllib3==1.25.8
+urllib3==1.26.5
 uvicorn==0.11.3
 uvloop==0.14.0
 websockets==8.1
