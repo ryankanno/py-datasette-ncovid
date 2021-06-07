@@ -7,7 +7,7 @@ authors = ["Ryan <ryankanno@localkinegrinds.com>"]
 [tool.poetry.dependencies]
 python = "^3.7"
 csvs-to-sqlite = "^1.0"
-datasette = "^0.39"
+datasette = "^0.56"
 
 [tool.poetry.dev-dependencies]
 
